@@ -1,0 +1,131 @@
+<div class="header-area">
+    {{> header-area}}
+</div> <!-- End header area -->
+
+<div class="site-branding-area">
+    {{>site-branding-area}}
+</div> <!-- End site branding area -->
+
+<div id="undefined-sticky-wrapper" class="sticky-wrapper" style="height: 50px;">
+    {{>mainmenu}}
+</div>
+
+<div class="product-big-title-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="product-bit-title text-center">
+                    <h2>{{pageTitle}}</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Page content -->
+
+<div class="single-product-area">
+    <div class="zigzag-bottom"></div>
+    <div class="container">
+            <div class="row">
+                <div class="product-content-right">
+                    <div class="product-breadcroumb">
+                        <a href="./">Trang chủ</a>
+                        <a href={{productPage product._id}}>{{product.name}}</a>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="product-images">
+                        <div class="product-main-img">
+                            <img src={{product.img}} alt="">
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="col-sm-6">
+                    <div class="product-inner">
+                        <h2 class="product-name">{{product.name}}</h2>
+                        <div class="product-inner-price">
+                            <ins></ins>
+                            <h5></h5>
+                            <p>{{product.info}}</p>
+                        </div>
+
+                        <form action="" class="cart">
+                            <div class="quantity">
+                                <input type="number" size="4" class="input-text qty text" title="Qty" value="1" name="quantity" min="1" step="1">
+                            </div>
+                            <button class="add_to_cart_button" type="submit">Thêm vào giỏ</button>
+
+                        </form>
+                    </div>
+
+                </div>
+
+
+            </div>
+                 <div role="tabpanel">
+                                    <ul class="product-tab" role="tablist">
+                                        <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab" aria-expanded="true">Đánh giá</a></li>
+                                        <li role="presentation" class=""><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab" aria-expanded="false">Xem các bình luận </a></li>
+                                    </ul>
+                                    <div class="tab-content">
+                                        <div role="tabpanel" class="tab-pane fade active in" id="home">
+                                            <div class="submit-review">
+                                                <p><label for="name">Tên</label> <input name="name" type="text"></p>
+                                                <p><label for="email">Email</label> <input name="email" type="email"></p>
+                                                <p><label for="review">Bình luận</label> <textarea name="review" id="" cols="30" rows="10"></textarea></p>
+                                                <p><input type="submit" value="Thêm bình luận"></p>
+                                            </div>
+                                        </div>
+                                        <div role="tabpanel" class="tab-pane fade" id="profile">
+                                            
+                                        </div>
+                                    </div>
+                                </div>                
+               <h3><a>Các mẫu giày tương tự</a></h3>
+
+                    {{# each relatedProduct}}
+                <div class="col-md-3 col-sm-6">
+                    <div class="single-shop-product">
+                        <div class="product-upper">
+                            <img src="{{this.img}}" alt="">
+                        </div>
+                        <h2><a href={{productPage this._id}}>{{this.name}}</a></h2>
+                        <div class="product-carousel-price">
+                            <ins>{{formatCurrency this.price}}</ins>
+                        </div>
+
+                        <div class="product-option-shop">
+                            <a class="add_to_cart_button" data-quantity="1" data-product_sku="" data-product_id="70" rel="nofollow" href={{productPage this._id}}>Xem chi tiết</a>
+                        </div>
+                    </div>
+                </div>
+            {{/each}}
+
+
+
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- End page content -->
+
+
+<div class="footer-top-area">
+    {{>footer-top}}
+</div> <!-- End footer top area -->
+
+<div class="footer-bottom-area">
+    {{>footer-bot}}
+</div> <!-- End footer bottom area -->
+
+
+
+
+
