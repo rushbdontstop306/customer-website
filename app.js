@@ -8,13 +8,14 @@ const hbsHelpers = require('./handlebarsHelper');
 const session = require('express-session');
 const flash = require('connect-flash');
 const passport = require('passport');
+const jquery = require('jquery');
 const MongoStore = require('connect-mongo')(session);
 //const http = require('http');
 const port = process.env.PORT || 3000;
 
 //Set up mongoose connection
 var mongoose = require('mongoose');
-var mongoDB = 'mongodb+srv://dragon-straight:8910JQKA@cluster0-dqpzz.mongodb.net/e-commerce';
+var mongoDB = 'mongodb+srv://admin:123@cluster0-apxng.mongodb.net/test';
 mongoose.connect(mongoDB, { useNewUrlParser: true });
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
@@ -45,19 +46,16 @@ app.use(express.static(path.join(__dirname, '/public')));
 //express session
 app.use(session({
   secret:'mysupersecret',
-  resave: false,
-  saveUninitialized: false,
+  resave: true,
+  saveUninitialized: true,
   store: new MongoStore({mongooseConnection: mongoose.connection}),
-  cookie:{maxAge: 180*60*1000}
+  cookie:{maxAge: 300*1000}
 }));
 //connect flash
 app.use(flash());
 
 app.use(passport.initialize());
 app.use(passport.session());
-
-
-
 
 app.use((req,res,next)=>{
   res.locals.success_msg=req.flash('success_msg');
@@ -89,8 +87,6 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-app.listen(port, function (req, res) {
-  console.log('Server is running');
-});
+app.listen(port);
 
 module.exports = app;
